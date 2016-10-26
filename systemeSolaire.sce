@@ -3,28 +3,32 @@
 ///////////////////////////////////////
 
 folder = 'W:\maths\Mini-Projet-2\'
-exec(folder+'lesAstres.sce');
-exec(folder+'lesFonctions.sce');
+//exec(folder+'lesAstres.sce');
+//exec(folder+'lesFonctions.sce');
 
 indiceSoleil = 1;
 indiceTerre = 0.5;
 indiceLune = 0.2;
 
-disp(coucherMatrice(xCube, yCube, zCube));
-
 /////////////////////////////////////
 //          L'animation            //
 /////////////////////////////////////
 
-for i=1:0.1:4
+i = 0;
+//while 1
+    i = i + 0.1;
+    
     drawlater()
-    clf(); //Clear
+//    clf(); //Clear
     a=gca() //get the current axes
     a.data_bounds=[-1 -1 -1; 
                     4  2  2 ];
     
     //Soleil Vert
-    plot3d(xCube*indiceSoleil, yCube*indiceSoleil, zCube*indiceSoleil);
+    Soleil = coucherMatrice(xCube*indiceSoleil, yCube*indiceSoleil, zCube*indiceSoleil)
+    rSoleil = rotation( Soleil, 0, 0, (i*%pi/10) );
+    disp(rSoleil);
+    plot3d(rSoleil(1, :), rSoleil(2,:), rSoleil(3,:) );
     e=gce(); e.color_mode=3; // change color
     
     // Voiture Bleue
@@ -35,4 +39,4 @@ for i=1:0.1:4
     e=gce(); e.color_mode=5; // change color
 
     drawnow();
-end
+//end
