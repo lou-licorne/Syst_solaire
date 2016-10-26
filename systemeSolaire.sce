@@ -2,9 +2,11 @@
 //      systemeSolaire.sce
 ///////////////////////////////////////
 
-folder = 'W:\maths\Mini-Projet-2\'
-//exec(folder+'lesAstres.sce');
-//exec(folder+'lesFonctions.sce');
+//folder = 'W:\maths\Mini-Projet-2\'    //Folder Fac
+folder = '/home/arthur/Documents/Scilab/Mini-Projet 2/';    //Folder portable Arthur
+//folder = 'louping/licorne/'   //Folder Louison
+exec(folder+'lesAstres.sce');
+exec(folder+'lesFonctions.sce');
 
 indiceSoleil = 1;
 indiceTerre = 0.5;
@@ -15,7 +17,7 @@ indiceLune = 0.2;
 /////////////////////////////////////
 
 i = 0;
-//while 1
+//while 1   // boucle infinie
     i = i + 0.1;
     
     drawlater()
