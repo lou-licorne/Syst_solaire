@@ -46,17 +46,23 @@ function result = rotation(matrice, x, y, z)
     vect = getOrigin(result);
     result = translation(result, -vect);
     
-    result = [cos(z) -sin(z) 0;
-              sin(z)  cos(z) 0;
-                  0       0  1] * result;
-           
-    result = [cos(y) 0 -sin(y);
-                  0  1      0 ;
-              sin(y) 0  cos(y)] * result;
-           
+    if x <> 0 then
     result = [1     0       0 ;
               0 cos(x) -sin(x);
               0 sin(x)  cos(x)] * result;
+    end
+    
+    if y <> 0 then
+    result = [cos(y) 0 -sin(y);
+                  0  1      0 ;
+              sin(y) 0  cos(y)] * result;
+    end
+    
+    if z <> 0 then
+    result = [cos(z) -sin(z) 0;
+              sin(z)  cos(z) 0;
+                  0       0  1] * result;
+    end
 
     result = translation(result, vect);
 endfunction
