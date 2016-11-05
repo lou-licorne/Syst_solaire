@@ -26,7 +26,9 @@ endfunction
 
 function s = tourneSoleil(sol)
     tmps = %pi/45;
-    R=[1 0 0;0 cos(tmps) -sin(tmps);0 sin(tmps) cos(tmps)];
+    R=[ cos(tmps) -sin(tmps) 0;
+        sin(tmps)  cos(tmps) 0;
+            0           0    1];
 
     s = sol - centreSoleil*ones(1,size(sol,"c"));
     s = R*s;
@@ -71,22 +73,32 @@ endfunction
 //  La Terre  //
 ////////////////
 
-function afficheTerre(te)
+function afficheTerre(t)
+
+    tmpsInclinaison = %pi/8;
+    RInclinaison=[ 1               0                  0  ;
+                   0 cos(tmpsInclinaison) -sin(tmpsInclinaison);
+                   0 sin(tmpsInclinaison)  cos(tmpsInclinaison)];
+
+    t = t - centreTerre*ones(1,size(t,"c"));
+    t = RInclinaison*t;
+    t = t + centreTerre*ones(1,size(t,"c"));
 
     face=zeros(3,3,8);
-    face(:,:,1)=te(:,[1 2 5]);
-    face(:,:,2)=te(:,[2 3 5]);
-    face(:,:,3)=te(:,[3 4 5]);
-    face(:,:,4)=te(:,[1 4 5]);
-    face(:,:,5)=te(:,[1 2 6]);
-    face(:,:,6)=te(:,[2 3 6]);
-    face(:,:,7)=te(:,[3 4 6]);
-    face(:,:,8)=te(:,[1 4 6]);
+    face(:,:,1)=t(:,[1 2 5]);
+    face(:,:,2)=t(:,[2 3 5]);
+    face(:,:,3)=t(:,[3 4 5]);
+    face(:,:,4)=t(:,[1 4 5]);
+    face(:,:,5)=t(:,[1 2 6]);
+    face(:,:,6)=t(:,[2 3 6]);
+    face(:,:,7)=t(:,[3 4 6]);
+    face(:,:,8)=t(:,[1 4 6]);
 
     x=matrix(face(1,:,:),3,8);
     y=matrix(face(2,:,:),3,8);
     z=matrix(face(3,:,:),3,8);
 
+//    plot3d(x,y,z, alpha=0, theta=90);
     plot3d(x,y,z);
     e=gce(); e.color_mode=5;
 
@@ -102,8 +114,24 @@ function t = tourneTerre(t)
     t = R*t;
     t = t + centreTerre*ones(1,size(t,"c"));
 
-    //afficheTerre(t);
+    afficheTerre(t);
 endfunction
+
+      function testTourneTerre()
+        te = terre;
+            for i = 1:100
+                drawlater();
+                clf();
+                
+                //  Mars One
+                te = tourneTerre(te);
+        //        te = tourneTerreSoleil(te);
+                afficheTerre(te);
+                
+                xpause((1/25)*100);
+                drawnow();
+            end
+        endfunction
 
 ///////////////////////
 //  Rotation Espace  //
