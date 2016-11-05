@@ -94,7 +94,9 @@ endfunction
 
 function t = tourneTerre(t)
     tmps = %pi/20;
-    R=[1 0 0;0 cos(tmps) -sin(tmps);0 sin(tmps) cos(tmps)];
+    R=[ cos(tmps) -sin(tmps) 0;
+        sin(tmps)  cos(tmps) 0;
+            0           0    1];
 
     t = t - centreTerre*ones(1,size(t,"c"));
     t = R*t;
