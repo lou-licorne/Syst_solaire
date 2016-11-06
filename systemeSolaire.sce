@@ -26,7 +26,7 @@
 //          L'animation            //
 /////////////////////////////////////
 
-sol = soleil; te = terre; l=lune;
+sol = soleil; te = terre; l=lune; // N'écrase pas les astres
 //afficheSoleil(sol);
 //afficheTerre(te);
 //afficheLune(lu);
@@ -51,7 +51,7 @@ function doABarrelRoll()    // Lançable via le terminal
 //        l = tourneTerreSoleil(l);
         afficheLune(l);
         
-        xpause((1/25)*100);
+        xpause(500);
         drawnow();
     end
 endfunction

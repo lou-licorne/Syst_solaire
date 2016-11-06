@@ -5,7 +5,8 @@
 function afficheSoleil(sol)
 
     a=gca();
-    a.data_bounds=[-20,-20,-20;12,12,12];
+    a.data_bounds=[-20,-20,-12;
+                    20, 20, 12];
 
     face=zeros(3,4,6);
     face(:,:,1)=sol(:,[1 2 3 4]);
@@ -51,14 +52,14 @@ function afficheLune(l)
     y=matrix(face(2,:,:),3,4);
     z=matrix(face(3,:,:),3,4);
 
-    plot3d(x,y,z, alpha=90, theta=360); // Vue Lune
-//    plot3d(x,y,z);
+//    plot3d(x,y,z, alpha=90, theta=360); // Vue Lune
+    plot3d(x,y,z);
     e=gce(); e.color_mode=2;
 
 endfunction
 
 function l = tourneLune(l)
-    tmps = %pi/5000000;
+    tmps = %pi/50;
     R=[ cos(tmps) -sin(tmps) 0;
         sin(tmps)  cos(tmps) 0;
             0           0    1];
@@ -74,6 +75,7 @@ endfunction
 
 function afficheTerre(t)
 
+    //Inclinaison de la terre d'un 8°
     tmpsInclinaison = %pi/8;
     RInclinaison=[ 1               0                  0  ;
                    0 cos(tmpsInclinaison) -sin(tmpsInclinaison);
@@ -118,14 +120,14 @@ endfunction
 //  Rotation Espace  //
 ///////////////////////
 
-function t = tourneTerreSoleil(t)
+function t = tourneTerreSoleil(te)
     t2=%pi/20;
     
     R2=[cos(t2) -sin(t2) 0;
         sin(t2) cos(t2)  0;
             0       0    1];
 
-    t = R2*t;
+    t = R2*te;
 endfunction
 
 /////////////
