@@ -5,7 +5,7 @@
 function afficheSoleil(sol)
 
     a=gca();
-    a.data_bounds=[-12,-12,-12;12,12,12];
+    a.data_bounds=[-20,-20,-20;12,12,12];
 
     face=zeros(3,4,6);
     face(:,:,1)=sol(:,[1 2 3 4]);
@@ -33,8 +33,6 @@ function s = tourneSoleil(sol)
     s = sol - centreSoleil*ones(1,size(sol,"c"));
     s = R*s;
     s = s + centreSoleil*ones(1,size(sol,"c"));
-
-//    afficheSoleil(s);
 endfunction
 
 ///////////////
@@ -53,20 +51,21 @@ function afficheLune(l)
     y=matrix(face(2,:,:),3,4);
     z=matrix(face(3,:,:),3,4);
 
-    plot3d(x,y,z);
+    plot3d(x,y,z, alpha=90, theta=360); // Vue Lune
+//    plot3d(x,y,z);
     e=gce(); e.color_mode=2;
 
 endfunction
 
 function l = tourneLune(l)
-    tmps = %pi/25;
-    R=[1 0 0;0 cos(tmps) -sin(tmps);0 sin(tmps) cos(tmps)];
+    tmps = %pi/5000000;
+    R=[ cos(tmps) -sin(tmps) 0;
+        sin(tmps)  cos(tmps) 0;
+            0           0    1];
 
     l = l - centreLune*ones(1,size(l,"c"));
     l = R*l;
     l = l + centreLune*ones(1,size(l,"c"));
-
-//    afficheLune(l);
 endfunction
 
 ////////////////
@@ -98,7 +97,7 @@ function afficheTerre(t)
     y=matrix(face(2,:,:),3,8);
     z=matrix(face(3,:,:),3,8);
 
-//    plot3d(x,y,z, alpha=0, theta=90);
+//    plot3d(x,y,z, alpha=90, theta=360); // Vue Terre Inclinée
     plot3d(x,y,z);
     e=gce(); e.color_mode=5;
 
@@ -110,28 +109,10 @@ function t = tourneTerre(t)
         sin(tmps)  cos(tmps) 0;
             0           0    1];
 
-    t = t - centreTerre*ones(1,size(t,"c"));
+    t = t - centreTerre*ones(1,size(t,"c"))+10;
     t = R*t;
-    t = t + centreTerre*ones(1,size(t,"c"));
-
-    afficheTerre(t);
+    t = t + centreTerre*ones(1,size(t,"c"))-10;
 endfunction
-
-      function testTourneTerre()
-        te = terre;
-            for i = 1:100
-                drawlater();
-                clf();
-                
-                //  Mars One
-                te = tourneTerre(te);
-        //        te = tourneTerreSoleil(te);
-                afficheTerre(te);
-                
-                xpause((1/25)*100);
-                drawnow();
-            end
-        endfunction
 
 ///////////////////////
 //  Rotation Espace  //
@@ -145,20 +126,6 @@ function t = tourneTerreSoleil(t)
             0       0    1];
 
     t = R2*t;
-
-//    afficheTerre(t);
-endfunction
-
-function l = tourneTerreSoleil(l)
-    t2=%pi/20;
-    
-    R2=[cos(t2) -sin(t2) 0;
-        sin(t2) cos(t2)  0;
-            0       0    1];
-
-    l = R2*l;
-
-//    afficheTerre(t);
 endfunction
 
 /////////////
