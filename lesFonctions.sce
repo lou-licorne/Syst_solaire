@@ -64,9 +64,9 @@ function l = tourneLune(l)
         sin(tmps)  cos(tmps) 0;
             0           0    1];
 
-    l = l - centreLune*ones(1,size(l,"c"));
+    l = l - centreTerre*ones(1,size(l,"c"));
     l = R*l;
-    l = l + centreLune*ones(1,size(l,"c"));
+    l = l + centreTerre*ones(1,size(l,"c"));
 endfunction
 
 ////////////////
@@ -75,8 +75,9 @@ endfunction
 
 function afficheTerre(t)
 
-    //Inclinaison de la terre d'un 8°
+    //Inclinaison de la terre de 1/8
     tmpsInclinaison = %pi/8;
+    centreTerre = calculCentreTerre(te);
     RInclinaison=[ 1               0                  0  ;
                    0 cos(tmpsInclinaison) -sin(tmpsInclinaison);
                    0 sin(tmpsInclinaison)  cos(tmpsInclinaison)];
@@ -111,9 +112,21 @@ function t = tourneTerre(t)
         sin(tmps)  cos(tmps) 0;
             0           0    1];
 
-    t = t - centreTerre*ones(1,size(t,"c"))+10;
+    t = t - centreTerre*ones(1,size(t,"c"));
     t = R*t;
-    t = t + centreTerre*ones(1,size(t,"c"))-10;
+    t = t + centreTerre*ones(1,size(t,"c"));
+endfunction
+
+function ast = calculCentreAstre(astre)
+    
+    for i=1:size(astre, "r")
+        temp = 0;
+        for j=1:size(astre, "c")
+            temp = temp + astre(i, j)
+        end
+        ast(i) = temp/size(astre, "c");
+    end
+    
 endfunction
 
 ///////////////////////
@@ -121,13 +134,25 @@ endfunction
 ///////////////////////
 
 function t = tourneTerreSoleil(te)
-    t2=%pi/20;
+    t2=%pi/200;
     
     R2=[cos(t2) -sin(t2) 0;
         sin(t2) cos(t2)  0;
             0       0    1];
 
     t = R2*te;
+endfunction
+
+function l = tourneLuneTerre(lune)
+    t2=%pi/2;
+    
+    R=[ cos(t2) -sin(t2) 0;
+        sin(t2) cos(t2)  0;
+            0       0    1]
+
+    l = l - centreTerre*ones(1, size(l, "c")) - centreLune*ones(1, size(l, "c"));
+    l = R*l;
+    l = l + centreTerre*ones(1, size(l, "c")) + centreLune*ones(1, size(l, "c"));
 endfunction
 
 /////////////

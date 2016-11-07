@@ -10,8 +10,8 @@
 
     // Arthur
     //////////////////////
-    //folder = '/home/arthur/Documents/Scilab/Mini-Projet 2/';    //Folder portable Arthur
-    folder = 'C:\Users\Tutur\Documents\Cours - Travaux Fac\mathsInge\Syst_solaire\';    //Folder portable Arthur
+    folder = '/home/arthur/Documents/Scilab/Mini-Projet 2/';    //Folder portable Arthur
+    //folder = 'C:\Users\Tutur\Documents\Cours - Travaux Fac\mathsInge\Syst_solaire\';    //Folder portable Arthur
     //folder = 'W:\mathsInge\Mini-projet 2\';   //Folder Fac Arthur
 
     // Lou
@@ -33,7 +33,7 @@ sol = soleil; te = terre; l=lune; // N'écrase pas les astres
 
 function doABarrelRoll()    // Lançable via le terminal
 //    while 1
-    for i = 1:50
+    for i = 1:500
         drawlater();
         clf();
         
@@ -46,12 +46,18 @@ function doABarrelRoll()    // Lançable via le terminal
         te = tourneTerreSoleil(te);
         afficheTerre(te);
         
+        //Calcul le nouveau centreTerre
+        centreTerre = calculCentreAstre(te);
+        
         //  Apollo 13
         l=tourneLune(l);
 //        l = tourneTerreSoleil(l);
+//        l = tourneLuneTerre(l);
         afficheLune(l);
         
-        xpause(500);
+        centreLune/3 = calculCentreAstre(l);
+        
+        xpause(5000);
         drawnow();
     end
 endfunction
