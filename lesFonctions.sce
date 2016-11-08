@@ -77,7 +77,6 @@ function afficheTerre(t)
 
     //Inclinaison de la terre de 1/8
     tmpsInclinaison = %pi/8;
-    centreTerre = calculCentreTerre(te);
     RInclinaison=[ 1               0                  0  ;
                    0 cos(tmpsInclinaison) -sin(tmpsInclinaison);
                    0 sin(tmpsInclinaison)  cos(tmpsInclinaison)];
@@ -141,47 +140,6 @@ function t = tourneTerreSoleil(te)
             0       0    1];
 
     t = R2*te;
-endfunction
-
-function l = tourneLuneTerre(lune)
-    t2=%pi/2;
-    
-    R=[ cos(t2) -sin(t2) 0;
-        sin(t2) cos(t2)  0;
-            0       0    1]
-
-    l = l - centreTerre*ones(1, size(l, "c")) - centreLune*ones(1, size(l, "c"));
-    l = R*l;
-    l = l + centreTerre*ones(1, size(l, "c")) + centreLune*ones(1, size(l, "c"));
-endfunction
-
-/////////////
-//  Autre  //
-/////////////
-
-function tourneAstres(sol,te,l)
-    for i=1:50
-        drawlater();
-        clf();
-
-        sol = tourneSoleil(sol);
-        te = tourneTerre(te);
-        te = tourneTerreSoleil(te);
-        l = tourneLune(l);
-
-        xpause((1/25)*1000);
-        drawnow();
-    end
-endfunction
-
-function afficheSys()    
-    sol = soleil; te = terre; l =lune;
-    afficheSoleil(sol);
-    afficheTerre(te);
-    afficheLune(l);
-
-
-    tourneAstres(sol, te, l);
 endfunction
 
 disp("Les fonctions ont bien été créées");
