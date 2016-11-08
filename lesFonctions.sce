@@ -1,4 +1,20 @@
 /////////////////
+//   Général   //
+/////////////////
+
+function ast = calculCentreAstre(astre)
+    
+    for i=1:size(astre, "r")
+        temp = 0;
+        for j=1:size(astre, "c")
+            temp = temp + astre(i, j)
+        end
+        ast(i) = temp/size(astre, "c");
+    end
+    
+endfunction
+
+/////////////////
 //  Le Soleil  //
 /////////////////
 
@@ -61,8 +77,7 @@ function afficheLune(l)
     y=matrix(face(2,:,:),3,4);
     z=matrix(face(3,:,:),3,4);
 
-    plot3d(x,y,z, alpha=90, theta=360); // Vue Lune
-    //plot3d(x,y,z);
+    plot3d(x,y,z);
     e=gce(); e.color_mode=2;
 
 endfunction
@@ -127,18 +142,6 @@ function t = tourneTerre(t)
     t = t + centreTerre*ones(1,size(t,"c"));
 endfunction
 
-function ast = calculCentreAstre(astre)
-    
-    for i=1:size(astre, "r")
-        temp = 0;
-        for j=1:size(astre, "c")
-            temp = temp + astre(i, j)
-        end
-        ast(i) = temp/size(astre, "c");
-    end
-    
-endfunction
-
 ///////////////////////
 //  Rotation Espace  //
 ///////////////////////
@@ -153,21 +156,9 @@ function t = tourneTerreSoleil(te)
     t = R2*te;
 endfunction
 
-function l = tourneLuneTerre(lune)
-    t2=%pi/2;
-    
-    R=[ cos(t2) -sin(t2) 0;
-        sin(t2) cos(t2)  0;
-            0       0    1]
-
-    l = l - centreTerre*ones(1, size(l, "c")) - centreLune*ones(1, size(l, "c"));
-    l = R*l;
-    l = l + centreTerre*ones(1, size(l, "c")) + centreLune*ones(1, size(l, "c"));
-endfunction
-
-/////////////////
-//  La fusée   //
-/////////////////
+/////////////////////
+//  L'Astronaute   //
+/////////////////////
 
 function afficheAstronaute(astro)
 
@@ -183,8 +174,8 @@ function afficheAstronaute(astro)
     y=matrix(face(2,:,:),4,6);
     z=matrix(face(3,:,:),4,6);
 
-    plot3d(x,y,z, alpha=90, theta=360);
-    //plot3d(x,y,z)
+//    plot3d(x,y,z, alpha=90, theta=360);   // Vue Lune
+    plot3d(x,y,z)
     e=gce(); e.color_mode=6;
 
 endfunction
