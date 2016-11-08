@@ -27,9 +27,6 @@
 /////////////////////////////////////
 
 sol = soleil; te = terre; l=lune, ast=astronaute; // N'écrase pas les astres
-//afficheSoleil(sol);
-//afficheTerre(te);
-//afficheLune(lu);
 
 function easterEgg = doABarrelRoll()    // Lançable via le terminal
 //    while 1
