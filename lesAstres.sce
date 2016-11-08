@@ -33,4 +33,17 @@ lune(1,:)=lune(1,:)+7;
 centreLune = [1 0.5 1]'/3;
 centreLune(1,:)=centreLune(1,:)+12;
 
+//Astronaute
+astronaute=[-1  1  1; 
+         1  1  1; 
+         1 -1  1; 
+        -1 -1  1; 
+        -1  1 -1; 
+         1  1 -1; 
+         1 -1 -1; 
+        -1 -1 -1]'/5;
+astronaute(1,:)=astronaute(1,:)+18;
+centreAstronaute=[0 0 0]'/5;
+centreAstronaute(1,:)=centreAstronaute(1,:)+18;
+
 disp("Les astres ont bien été créés");
