@@ -155,33 +155,4 @@ function l = tourneLuneTerre(lune)
     l = l + centreTerre*ones(1, size(l, "c")) + centreLune*ones(1, size(l, "c"));
 endfunction
 
-/////////////
-//  Autre  //
-/////////////
-
-function tourneAstres(sol,te,l)
-    for i=1:50
-        drawlater();
-        clf();
-
-        sol = tourneSoleil(sol);
-        te = tourneTerre(te);
-        te = tourneTerreSoleil(te);
-        l = tourneLune(l);
-
-        xpause((1/25)*1000);
-        drawnow();
-    end
-endfunction
-
-function afficheSys()    
-    sol = soleil; te = terre; l =lune;
-    afficheSoleil(sol);
-    afficheTerre(te);
-    afficheLune(l);
-
-
-    tourneAstres(sol, te, l);
-endfunction
-
 disp("Les fonctions ont bien été créées");

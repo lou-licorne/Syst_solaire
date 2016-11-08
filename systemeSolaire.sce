@@ -51,11 +51,8 @@ function doABarrelRoll()    // Lançable via le terminal
         
         //  Apollo 13
         l=tourneLune(l);
-//        l = tourneTerreSoleil(l);
 //        l = tourneLuneTerre(l);
         afficheLune(l);
-        
-        centreLune/3 = calculCentreAstre(l);
         
         xpause(5000);
         drawnow();
