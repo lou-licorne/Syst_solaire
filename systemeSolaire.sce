@@ -10,7 +10,7 @@
 
     // Arthur
     //////////////////////
-    folder = '/home/arthur/Documents/Scilab/Mini-Projet 2/';    //Folder portable Arthur
+    folder = 'C:\Users\Lou\Desktop\SYSTEME\';    //Folder portable Arthur
     //folder = 'C:\Users\Tutur\Documents\Cours - Travaux Fac\mathsInge\Syst_solaire\';    //Folder portable Arthur
     //folder = 'W:\mathsInge\Mini-projet 2\';   //Folder Fac Arthur
 
@@ -38,7 +38,7 @@ function doABarrelRoll()    // Lançable via le terminal
         clf();
         
         //  Le Soleil Vert
-        sol = tourneSoleil(sol);
+        //sol = tourneSoleil(sol);
         afficheSoleil(sol);
         
         //  Mars One

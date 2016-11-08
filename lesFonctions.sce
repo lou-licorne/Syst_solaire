@@ -77,7 +77,7 @@ function afficheTerre(t)
 
     //Inclinaison de la terre de 1/8
     tmpsInclinaison = %pi/8;
-    centreTerre = calculCentreTerre(te);
+    centreTerre = calculCentreAstre(te);
     RInclinaison=[ 1               0                  0  ;
                    0 cos(tmpsInclinaison) -sin(tmpsInclinaison);
                    0 sin(tmpsInclinaison)  cos(tmpsInclinaison)];
