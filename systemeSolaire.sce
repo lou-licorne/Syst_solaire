@@ -56,6 +56,8 @@ function easteregg = doABarrelRoll()    // Lançable via le terminal
         xpause(5000);
         drawnow();
     end
+    
+    display("https://www.youtube.com/watch?v=paNiFe_PQKA - Version française de Space Oddity")
 endfunction
 
 doABarrelRoll() // Auto exec sur F5
