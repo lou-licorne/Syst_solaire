@@ -10,12 +10,12 @@
 
     // Arthur
     //////////////////////
-    folder = 'C:\Users\Lou\Desktop\SYSTEME\';    //Folder portable Arthur
-    //folder = 'C:\Users\Tutur\Documents\Cours - Travaux Fac\mathsInge\Syst_solaire\';    //Folder portable Arthur
+    folder = 'C:\Users\Tutur\Documents\Cours - Travaux Fac\mathsInge\Syst_solaire\';    //Folder portable Arthur
     //folder = 'W:\mathsInge\Mini-projet 2\';   //Folder Fac Arthur
 
     // Lou
     //////////////////////
+    //folder = 'C:\Users\Lou\Desktop\SYSTEME\';    //Folder portable Arthur
     //folder = 'W:\maths\Mini-Projet-2\'    //Folder Fac Lou
     //folder = 'louping/licorne/'   //Folder Louison
 
@@ -38,7 +38,7 @@ function doABarrelRoll()    // Lançable via le terminal
         clf();
         
         //  Le Soleil Vert
-        //sol = tourneSoleil(sol);
+//        sol = tourneSoleil(sol);  // Possibilité de faire tourner le soleil sur lui
         afficheSoleil(sol);
         
         //  Mars One
